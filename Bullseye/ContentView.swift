@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var alertIsVisible : Bool = false
+    @State private var knockKnonkIsVisible: Bool = false
     
     var body: some View {
         VStack {
@@ -30,6 +31,7 @@ struct ContentView: View {
                 Text("100")
                 .font(.body) //defualt font is body 18px
                 .fontWeight(.bold)}
+            //deprecated style
             Button(action:{
                 self.alertIsVisible = true
                 print("Hello, SwiftUI!")
@@ -38,6 +40,12 @@ struct ContentView: View {
             }.alert(isPresented: $alertIsVisible, content: {
                 return Alert(title: Text("Hello Title"), message: Text("Thank you!"), dismissButton: .default(Text("Bye")))
             })
+            // new style of Alert
+            Button("Knock Knock!") {
+                self.knockKnonkIsVisible = true
+            }.alert("Who's there?", isPresented: $knockKnonkIsVisible){
+                Button("Little lady who?"){}
+            } message:{Text("Little old lady")}
         }
     }
 }
